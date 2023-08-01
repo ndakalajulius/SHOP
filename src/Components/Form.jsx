@@ -1,71 +1,50 @@
-import React from "react";
-import "./Form.css";
-import  { useRef } from "react";
+import React from 'react'
 
-function Form() {
-  const firstNameRef = useRef(null);
-  const lastNameRef = useRef(null);
-  const emailRef = useRef(null);
-  const messageRef = useRef(null);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const data = {
-      firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value,
-      email: emailRef.current.value,
-      message: messageRef.current.value,
-    };
-    alert("tadaaa!: \n" + JSON.stringify(data) + "Your data 😎");
-  };
-
+import './Form.css'
+const Form = () => {
+  const [formStatus, setFormStatus] = React.useState('Send')
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setFormStatus('Submitting...')
+    const { name, email, message } = e.target.elements
+    let conFom = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    }
+    console.log(conFom)
+  }
   return (
-    <div className="container">
-      <h1>Contact us</h1>
-
-      <form className="form">
-        <div className="name">
-          <label for="firstName">First name</label>
-          <input
-            type="text"
-            name="firstName"
-            className="firstName"
-            tabIndex="1"
-            ref={firstNameRef}
-          />
-          <label for="lastName">Last name</label>
-          <input
-            type="text"
-            name="lastName"
-            className="lastName"
-            tabIndex="2"
-            ref={lastNameRef}
-          />
-          <label for="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="email"
-            placeholder="example@corp.com"
-            tabIndex="3"
-            ref={emailRef}
-          />
-          <label for="message">Message</label>
-
-          <textarea
-            placeholder="Start typing..."
-            className="message"
-            name="message"
-            ref={messageRef}
-          />
+    <div className="container-form">
+      <h2 className="mb-3"> Contact us</h2>
+      <p> 
+      You can use the following form and details to contact me anytime.<br></br>
+      
+      Mail: digamber@positronx.io </p>
+      <form onSubmit={onSubmit}>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="name">
+            Name
+          </label>
+          <input className="form-control" type="text" id="name" required />
         </div>
-        <button type="submit" className="send">
-          Send
+        <div className="mb-3">
+          <label className="form-label" htmlFor="email">
+            Email
+          </label>
+          <input className="form-control" type="email" id="email" required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="message">
+            Message
+          </label>
+          <textarea className="form-control" id="message" required />
+        </div>
+        <button className="btn btn-danger" type="submit">
+          {formStatus}
         </button>
       </form>
     </div>
-  );
+  )
 }
-export default Form;
+export default Form
