@@ -1,6 +1,7 @@
 import React from "react";
 import aboutimage from "../images/about-us.png";
 import './About.css'
+import Footer from "../Footer";
 function About() {
   return (
     <>
@@ -73,6 +74,7 @@ function About() {
             </p>
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   );

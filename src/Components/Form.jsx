@@ -1,26 +1,23 @@
-import React from 'react'
+import React from "react";
 
-import './Form.css'
+import "./Form.css";
 const Form = () => {
-  const [formStatus, setFormStatus] = React.useState('Send')
+  const [formStatus, setFormStatus] = React.useState("Send");
   const onSubmit = (e) => {
-    e.preventDefault()
-    setFormStatus('Submitting...')
-    const { name, email, message } = e.target.elements
+    e.preventDefault();
+    setFormStatus("Submitting...");
+    const { name, email, message } = e.target.elements;
     let conFom = {
       name: name.value,
       email: email.value,
       message: message.value,
-    }
-    console.log(conFom)
-  }
+    };
+    console.log(conFom);
+  };
   return (
     <div className="container-form">
       <h2 className="mb-3"> Contact us</h2>
-      <p> 
-      You can use the following form and details to contact me anytime.<br></br>
-      
-      Mail: digamber@positronx.io </p>
+
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
@@ -45,6 +42,6 @@ const Form = () => {
         </button>
       </form>
     </div>
-  )
-}
-export default Form
+  );
+};
+export default Form;
